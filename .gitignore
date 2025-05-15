@@ -1,0 +1,82 @@
+# --------------------------------------
+# General
+# --------------------------------------
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# --------------------------------------
+# Laravel
+# --------------------------------------
+/vendor/
+/bootstrap/cache/
+/storage/*.key
+/storage/*.log
+/storage/*.txt
+/storage/framework/cache/data/
+/storage/framework/sessions/
+/storage/framework/views/
+/storage/logs/
+
+# --------------------------------------
+# Ignore local development keys
+# --------------------------------------
+Homestead.yaml
+Homestead.json
+
+# --------------------------------------
+# Angular
+# --------------------------------------
+/dist/
+/tmp/
+/out-tsc/
+.angular
+/.angular/cache/
+/coverage/
+/src/environments/*.ts
+# (if you want to include prod env you can add !src/environments/environment.prod.ts)
+
+# --------------------------------------
+# Docker
+# --------------------------------------
+docker-compose.override.yml
+*.pid
+
+# --------------------------------------
+# IDE and OS (Mac)
+# --------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+
+# --------------------------------------
+# Mac specific files
+# --------------------------------------
+.AppleDouble
+.LSOverride
+Icon?
+ehthumbs.db
+Desktop.ini
+
+# --------------------------------------
+# Files that might appear on external disks
+# --------------------------------------
+.Spotlight-V100
+.Trashes
+
+# --------------------------------------
+# Others
+# --------------------------------------
+# If you have additional local config or customization files
+local.env
+*.local
