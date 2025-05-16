@@ -2,6 +2,10 @@
 
 Este proyecto es una aplicación fullstack que combina un frontend desarrollado en Angular y un backend construido con Laravel. Está diseñado para ser modular, escalable y fácil de mantener, siguiendo las mejores prácticas tanto en el desarrollo frontend como backend.
 
+## Diagrama de la base de datos (se exclueron del gráfico las tablas que se instalan por defecto)
+
+![img1](mer.png)
+
 ## Contenido del Proyecto
 
 ### Frontend (Angular)
