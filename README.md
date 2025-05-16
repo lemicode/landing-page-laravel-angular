@@ -38,7 +38,7 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 - Composer
 - PHP (v8.1 o superior)
 - MySQL o SQLite
-- Docker (opcional, para contenedores)
+- Docker (Opcional, es para crear los contenedores de MariaDB y PhpMyAdmin, como más adelante se relaciona.)
 
 ### Pasos
 
@@ -50,7 +50,7 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 
 2. **Ejecutar Docker**:
 
-   El archivo `docker-compose.yaml` se encuentra en la carpeta `/docker-rdbms`. Una vez ejecutado ya se contaría con **MariaDB** y **PhpMyAdmin** al cual se podría acceder desde el navegador mediante la dirección `http://localhost:8080` *(Usuario: root, Password: notSecureChangeMe)*
+   El archivo `docker-compose.yaml` se encuentra en la carpeta `/docker-rdbms`. Una vez ejecutado ya se contaría con **MariaDB** y **PhpMyAdmin** al cual se podría acceder desde el navegador mediante la dirección `http://localhost:8080` *(Usuario: root, Password: notSecureChangeMe)*.
 
    ```bash
    docker-compose up -d
