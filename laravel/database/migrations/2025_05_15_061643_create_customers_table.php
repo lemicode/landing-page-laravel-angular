@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('identity_number');
             $table->unsignedBigInteger('department_id');
             $table->unsignedBigInteger('city_id');
-            $table->integer('phone_number');
+            $table->bigInteger('phone_number');
             $table->string('email')->unique();
             $table->boolean('habeas_data_consent')->default(false);
             $table->timestamps();
