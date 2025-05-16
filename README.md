@@ -6,6 +6,10 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 
 ![img1](mer.png)
 
+## Pruebas unitarias realizadas al backend
+
+![img2](test-backend.png)
+
 ## Contenido del Proyecto
 
 ### Frontend (Angular)
