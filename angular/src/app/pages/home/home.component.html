@@ -40,9 +40,11 @@
                 <div class="col-12">
                     <div class="mb-3">
                       <label class="form-label">Departamento</label>
-                      <select class="form-select form-select-sm" formControlName="departmentId" required>
-                        <option selected>Seleccione una opción</option>
-                        <option>...</option>
+                      <select class="form-select form-select-sm" formControlName="departmentId" required (change)="getCities()">
+                        <option [value]="0" disabled>Seleccione una opción</option>
+                        @for (department of departments; track department.id) {
+                          <option [value]="department.id">{{ department.name }}</option>
+                        }
                       </select>
                     </div>
                 </div>
@@ -53,8 +55,10 @@
                     <div class="mb-3">
                       <label class="form-label">Ciudad</label>
                       <select class="form-select form-select-sm" formControlName="cityId" required>
-                        <option selected>Seleccione una opción</option>
-                        <option>...</option>
+                        <option [value]="0" disabled>Seleccione una opción</option>
+                        @for (city of cities; track city.id) {
+                          <option [value]="city.id">{{ city.name }}</option>
+                        }
                       </select>
                     </div>
                 </div>

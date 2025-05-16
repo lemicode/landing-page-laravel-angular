@@ -10,20 +10,20 @@ import { Customer } from '../../interfaces/customer.interface';
 export class CustomerService {
   constructor(private http: HttpClient) {}
 
-  getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${environment.apiUrl}/customers`);
+  getCustomers(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/customers`);
   }
 
-  createCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(`${environment.apiUrl}/customers`, customer);
+  createCustomer(customer: Customer): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/customers`, customer);
   }
 
-  selectWinner(): Observable<Customer> {
-    return this.http.get<Customer>(`${environment.apiUrl}/customers/winner`);
+  selectWinner(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/customers/winner`);
   }
 
   downloadExcel(): Observable<Blob> {
-    return this.http.get(`${environment.apiUrl}/customers/excel`, {
+    return this.http.get(`${environment.apiUrl}/departments/excel`, {
       responseType: 'blob',
     });
   }
