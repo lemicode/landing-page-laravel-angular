@@ -48,30 +48,33 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
    cd project
    ```
 
-2. **Configurar el backend (Laravel)**:
+2. **Ejecutar Docker**:
+
+   El archivo docker-compose.yaml se encuentra en la carpeta /docker-rdbms. Una vez ejecutado ya se contaría con MariaDB y PhpMyAdmin el cual podría acceder desde el navegador mediante la dirección `http://localhost:8080` (Usuario: root, Password: notSecureChangeMe)
+
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Configurar el backend (Laravel)**:
+
    ```bash
    cd laravel
    composer install
-   cp .env.example .env
    php artisan key:generate
    php artisan migrate --seed --force
    php artisan serve
    ```
-   Esto iniciará el servidor en `http://127.0.0.1:8000`.
+   Esto iniciará el servidor en `http://localhost:8000`
 
-3. **Configurar el frontend (Angular)**:
+4. **Configurar el frontend (Angular)**:
+
    ```bash
    cd ../angular
    npm install
    ng serve
    ```
-   Esto iniciará el servidor en `http://localhost:4200`.
-
-4. **(Opcional) Usar Docker**:
-   Si prefieres usar contenedores, puedes ejecutar:
-   ```bash
-   docker-compose up --build
-   ```
+   Esto iniciará el servidor en `http://localhost:4200`
 
 ## Buenas prácticas implementadas
 
