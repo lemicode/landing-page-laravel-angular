@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { WinnerService } from '../../../services/winner/winner.service';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-winner',
@@ -7,33 +8,44 @@ import { WinnerService } from '../../../services/winner/winner.service';
   templateUrl: './winner.component.html',
   styleUrl: './winner.component.css',
 })
-export class WinnerComponent implements AfterViewInit {
-  @ViewChild('canvas', { static: false }) canvas!: ElementRef<HTMLCanvasElement>;
-  winnerName: string = '';
+export class WinnerComponent {
+  winnerName: string | null = null;
 
   constructor(private winnerService: WinnerService) {}
-
-  ngAfterViewInit(): void {
-    this.winnerService.createInstance(this.canvas);
-  }
-
-  celebrate() {
-    this.winnerService.launchConfetti({
-      particleCount: 200,
-      spread: 100,
-      origin: { y: 0.5 },
-    });
-  }
 
   selectWinner() {
     this.winnerService.selectWinner().subscribe({
       next: (data) => {
-        this.winnerName = `${data.winner.name} ${data.winner.last_name}`;
-        console.log('Winner selected successfully', data);
+        if (data.winner) {
+          this.winnerName = `${data.winner.name} ${data.winner.last_name}`;
+          this.celebrate();
+          console.log('Winner selected successfully', data);
+        }
       },
       error: (error) => {
         console.error('Error selecting winner:', error);
       },
     });
+  }
+
+  celebrate() {
+    const duration = 3000;
+
+    const end = Date.now() + duration;
+
+    const frame = () => {
+      confetti({
+        particleCount: 150,
+        spread: 180,
+        origin: { y: 0.6 },
+        colors: ['#FF4500', '#008080', '#FFD700'],
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    frame();
   }
 }

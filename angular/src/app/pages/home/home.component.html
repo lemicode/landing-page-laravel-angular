@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-around align-items-center">
-    <div class="col-6">
+    <div class="col-11 col-sm-11 col-md-6 col-lg-6">
       <div class="card mt-4">
         <div class="card-header text-center">
           <h5>REGÍSTRATE PARA CONCURSAR POR UN AUTOMÓVIL</h5>
@@ -112,7 +112,9 @@
 
               <div class="col-12 d-flex gap-5">
                 <button type="submit" [disabled]="!customerForm.valid" class="btn btn-outline-primary">Registrarme para concursar</button>
-                <button type="button" class="btn btn-outline-secondary" (click)="downloadExcel()"> Descargar archivos de Excel</button>
+                <button type="button" class="btn btn-outline-secondary" (click)="downloadExcel()"> 
+                  Descargar archivos de Excel
+                </button>
               </div>
 
             </div>
@@ -120,7 +122,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-11 col-sm-11 col-md-6 col-lg-6 text-center mt-4">
       <app-winner></app-winner>
     </div>
   </div>
