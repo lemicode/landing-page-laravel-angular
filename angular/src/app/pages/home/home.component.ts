@@ -14,18 +14,24 @@ import { City } from '../../interfaces/city.interface';
 import { Observable } from 'rxjs';
 import { notZeroValidator } from '../../utils/validators';
 import { CustomerModel } from '../../models/customer.model';
+import { WinnerComponent } from '../../shared/components/winner/winner.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, WinnerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
   [key: string]: any;
 
+  /** List of departments loaded from the backend. */
   departments: Department[] = [];
+
+  /** List of cities based on the selected department. */
   cities: City[] = [];
+
+  /** Reactive form for customer registration. */
   customerForm = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
@@ -63,10 +69,12 @@ export class HomeComponent {
     private cityService: CityService
   ) {}
 
+  /** Initializes the component by loading departments. */
   ngOnInit() {
     this.getDepartments();
   }
 
+  /** Fetches the list of departments from the backend. */
   getDepartments() {
     this.departmentService.getDepartments().subscribe({
       next: (data) => {
@@ -80,6 +88,7 @@ export class HomeComponent {
     });
   }
 
+  /** Fetches the list of cities based on the selected department. */
   getCities() {
     if (!this.customerForm.value.departmentId) {
       return;
@@ -97,6 +106,7 @@ export class HomeComponent {
       });
   }
 
+  /** Downloads Excel files for customers, departments, and cities. */
   downloadExcel() {
     const fileNames = ['customers.xlsx', 'departments.xlsx', 'cities.xlsx'];
     const serviceNames = [
@@ -124,6 +134,7 @@ export class HomeComponent {
     }
   }
 
+  /** Handles form submission to create a new customer. */
   handleSubmit() {
     if (this.customerForm.valid) {
       const customer = new CustomerModel(this.customerForm.getRawValue());
@@ -143,16 +154,5 @@ export class HomeComponent {
       this.customerForm.markAllAsTouched();
       console.error('Form is invalid');
     }
-  }
-
-  selectWinner() {
-    this.customerService.selectWinner().subscribe({
-      next: (data) => {
-        console.log('Winner selected successfully', data);
-      },
-      error: (error) => {
-        console.error('Error selecting winner:', error);
-      },
-    });
   }
 }

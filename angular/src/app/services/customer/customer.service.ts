@@ -24,10 +24,6 @@ export class CustomerService {
     );
   }
 
-  selectWinner(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/customers/winner`);
-  }
-
   downloadExcel(): Observable<Blob> {
     return this.http.get(`${environment.apiUrl}/departments/excel`, {
       responseType: 'blob',

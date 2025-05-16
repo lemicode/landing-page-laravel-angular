@@ -1,3 +1,7 @@
 body {
-    background-color: orange !important;
+  background-color: orange !important;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
 }
