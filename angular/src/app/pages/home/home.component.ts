@@ -5,16 +5,19 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer/customer.service';
 import { DepartmentService } from '../../services/department/department.service';
 import { CityService } from '../../services/city/city.service';
 import { Department } from '../../interfaces/department.interface';
 import { City } from '../../interfaces/city.interface';
 import { Observable } from 'rxjs';
+import { notZeroValidator } from '../../utils/validators';
+import { CustomerModel } from '../../models/customer.model';
 
 @Component({
   selector: 'app-home',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -39,10 +42,12 @@ export class HomeComponent {
     departmentId: new FormControl(0, [
       Validators.required,
       Validators.pattern(/^[0-9]+$/),
+      notZeroValidator,
     ]),
     cityId: new FormControl(0, [
       Validators.required,
       Validators.pattern(/^[0-9]+$/),
+      notZeroValidator,
     ]),
     phoneNumber: new FormControl(null, [
       Validators.required,
@@ -121,11 +126,33 @@ export class HomeComponent {
 
   handleSubmit() {
     if (this.customerForm.valid) {
-      //
+      const customer = new CustomerModel(this.customerForm.getRawValue());
+      this.customerService.createCustomer(customer).subscribe({
+        next: () => {
+          console.log('Customer created successfully');
+        },
+        error: (error) => {
+          console.error('Error creating customer:', error);
+        },
+      });
+      this.customerForm.reset();
+      this.cities = [];
+      this.customerForm.get('departmentId')?.setValue(0);
+      this.customerForm.get('cityId')?.setValue(0);
+    } else {
+      this.customerForm.markAllAsTouched();
+      console.error('Form is invalid');
     }
   }
 
   selectWinner() {
-    this.customerService.selectWinner().subscribe();
+    this.customerService.selectWinner().subscribe({
+      next: (data) => {
+        console.log('Winner selected successfully', data);
+      },
+      error: (error) => {
+        console.error('Error selecting winner:', error);
+      },
+    });
   }
 }

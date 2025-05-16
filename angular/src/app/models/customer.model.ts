@@ -1,16 +1,34 @@
 import { Customer } from '../interfaces/customer.interface';
 
 export class CustomerModel {
-  constructor(
-    public name: string,
-    public lastName: string,
-    public identityNumber: number,
-    public departmentId: number,
-    public cityId: number,
-    public phoneNumber: number,
-    public email: string,
-    public habeasDataConsent: boolean = false
-  ) {}
+  private name: string;
+  private lastName: string;
+  private identityNumber: number;
+  private departmentId: number;
+  private cityId: number;
+  private phoneNumber: number;
+  private email: string;
+  private habeasDataConsent: boolean;
+
+  constructor(data: {
+    name: string | null;
+    lastName: string | null;
+    identityNumber: number | null;
+    departmentId: number | null;
+    cityId: number | null;
+    phoneNumber: number | null;
+    email: string | null;
+    habeasDataConsent: boolean | null;
+  }) {
+    this.name = data.name as string;
+    this.lastName = data.lastName as string;
+    this.identityNumber = data.identityNumber as number;
+    this.departmentId = data.departmentId as number;
+    this.cityId = data.cityId as number;
+    this.phoneNumber = data.phoneNumber as number;
+    this.email = data.email as string;
+    this.habeasDataConsent = data.habeasDataConsent as boolean;
+  }
 
   toJSON(): Customer {
     return {

@@ -14,6 +14,9 @@
                   <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <input type="text" formControlName="name" class="form-control form-control-sm" placeholder="Ingrese su nombre" required />
+                    <small *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched" class="text-danger">
+                      Nombre es requerido y debe contener solo letras.
+                    </small>
                   </div>
                 </div>
               </div>
@@ -23,6 +26,9 @@
                   <div class="mb-3">
                     <label class="form-label">Apellido</label>
                     <input type="text" formControlName="lastName" class="form-control form-control-sm" placeholder="Ingrese su apellido" required />
+                    <small *ngIf="customerForm.get('lastName')?.invalid && customerForm.get('lastName')?.touched" class="text-danger">
+                      Apellido es requerido y debe contener solo letras.
+                    </small>
                   </div>
                 </div>
               </div>
@@ -32,6 +38,9 @@
                   <div class="mb-3">
                     <label class="form-label">Cédula</label>
                     <input type="number" formControlName="identityNumber" class="form-control form-control-sm" placeholder="Ingrese su cédula" required />
+                    <small *ngIf="customerForm.get('identityNumber')?.invalid && customerForm.get('identityNumber')?.touched" class="text-danger">
+                      Cédula es requerida y debe contener solo números.
+                    </small>
                   </div>
                 </div>
               </div>
@@ -69,6 +78,9 @@
                   <div class="mb-3">
                     <label class="form-label">Teléfono</label>
                     <input type="phone" formControlName="phoneNumber" class="form-control form-control-sm" placeholder="Ingrese su teléfono" required />
+                    <small *ngIf="customerForm.get('phoneNumber')?.invalid && customerForm.get('phoneNumber')?.touched" class="text-danger">
+                      Teléfono es requerido y debe contener solo números.
+                    </small>
                   </div>
                 </div>
               </div>
@@ -78,6 +90,9 @@
                   <div class="mb-3">
                     <label class="form-label">Correo</label>
                     <input type="email" formControlName="email" class="form-control form-control-sm" placeholder="Ingrese su correo" required />
+                    <small *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched" class="text-danger">
+                      Correo es requerido y debe tener un formato válido.
+                    </small>
                   </div>
                 </div>
               </div>
