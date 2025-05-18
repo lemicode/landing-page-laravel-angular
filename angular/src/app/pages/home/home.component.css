@@ -1,0 +1,17 @@
+#background {
+    background-image: url(../../../assets/images/car.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    width: 100dvw;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#landing-page {
+    background-color: rgb(0, 0, 0, 0.8);
+}

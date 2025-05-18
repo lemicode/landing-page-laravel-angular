@@ -1,19 +1,28 @@
-<div class="container">
+<div id="background"></div>
+<!-- Container for the entire registration form -->
+<div id="landing-page" class="container-fluid">
+  <!-- Row for aligning the form and winner component -->
   <div class="row justify-content-around align-items-center">
+    <!-- Column for the registration form -->
     <div class="col-11 col-sm-11 col-md-6 col-lg-6">
       <div class="card mt-4 mb-4">
+        <!-- Header of the registration card -->
         <div class="card-header text-center">
           <h5>REGÍSTRATE PARA CONCURSAR POR UN AUTOMÓVIL</h5>
         </div>
         <div class="card-body">
+          <!-- Registration form with Angular reactive forms -->
           <form [formGroup]="customerForm" (ngSubmit)="handleSubmit()">  
             <div class="container-fluid">
 
+              <!-- Row for the name input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Nombre</label>
+                    <!-- Input for the user's first name -->
                     <input type="text" formControlName="name" class="form-control form-control-sm" placeholder="Ingrese su nombre" required />
+                    <!-- Error message for invalid name input -->
                     <small *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched" class="text-danger">
                       Nombre es requerido y debe contener solo letras.
                     </small>
@@ -21,11 +30,14 @@
                 </div>
               </div>
 
+              <!-- Row for the last name input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Apellido</label>
+                    <!-- Input for the user's last name -->
                     <input type="text" formControlName="lastName" class="form-control form-control-sm" placeholder="Ingrese su apellido" required />
+                    <!-- Error message for invalid last name input -->
                     <small *ngIf="customerForm.get('lastName')?.invalid && customerForm.get('lastName')?.touched" class="text-danger">
                       Apellido es requerido y debe contener solo letras.
                     </small>
@@ -33,11 +45,14 @@
                 </div>
               </div>
 
+              <!-- Row for the identity number input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Cédula</label>
+                    <!-- Input for the user's identity number -->
                     <input type="number" formControlName="identityNumber" class="form-control form-control-sm" placeholder="Ingrese su cédula" required />
+                    <!-- Error message for invalid identity number input -->
                     <small *ngIf="customerForm.get('identityNumber')?.invalid && customerForm.get('identityNumber')?.touched" class="text-danger">
                       Cédula es requerida y debe contener solo números.
                     </small>
@@ -45,10 +60,12 @@
                 </div>
               </div>
 
+              <!-- Row for the department selection dropdown -->
               <div class="row">
                 <div class="col-12">
                     <div class="mb-3">
                       <label class="form-label">Departamento</label>
+                      <!-- Dropdown for selecting a department -->
                       <select class="form-select form-select-sm" formControlName="departmentId" required (change)="getCities()">
                         <option [value]="0" disabled>Seleccione una opción</option>
                         @for (department of departments; track department.id) {
@@ -59,10 +76,12 @@
                 </div>
               </div>
 
+              <!-- Row for the city selection dropdown -->
               <div class="row">
                 <div class="col-12">
                     <div class="mb-3">
                       <label class="form-label">Ciudad</label>
+                      <!-- Dropdown for selecting a city -->
                       <select class="form-select form-select-sm" formControlName="cityId" required>
                         <option [value]="0" disabled>Seleccione una opción</option>
                         @for (city of cities; track city.id) {
@@ -73,11 +92,14 @@
                 </div>
               </div>
 
+              <!-- Row for the phone number input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Teléfono</label>
+                    <!-- Input for the user's phone number -->
                     <input type="phone" formControlName="phoneNumber" class="form-control form-control-sm" placeholder="Ingrese su teléfono" required />
+                    <!-- Error message for invalid phone number input -->
                     <small *ngIf="customerForm.get('phoneNumber')?.invalid && customerForm.get('phoneNumber')?.touched" class="text-danger">
                       Teléfono es requerido y debe contener solo números.
                     </small>
@@ -85,11 +107,14 @@
                 </div>
               </div>
 
+              <!-- Row for the email input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Correo</label>
+                    <!-- Input for the user's email address -->
                     <input type="email" formControlName="email" class="form-control form-control-sm" placeholder="Ingrese su correo" required />
+                    <!-- Error message for invalid email input -->
                     <small *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched" class="text-danger">
                       Correo es requerido y debe tener un formato válido.
                     </small>
@@ -97,9 +122,11 @@
                 </div>
               </div>
 
+              <!-- Row for the habeas data consent checkbox -->
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-check">
+                    <!-- Checkbox for user consent -->
                     <input class="form-check-input" type="checkbox" formControlName="habeasDataConsent" required />
                     <label class="form-check-label">
                       <p style="text-align: justify;">
@@ -110,11 +137,20 @@
                 </div>
               </div>
 
-              <div class="col-12 d-flex gap-5">
-                <button type="submit" [disabled]="!customerForm.valid" class="btn btn-outline-primary">Registrarme para concursar</button>
-                <button type="button" class="btn btn-outline-secondary" (click)="downloadExcel()"> 
-                  Descargar archivos de Excel
-                </button>
+              <!-- Row for the form action buttons -->
+              <div class="col-12">
+                <div class="row justify-content-center text-center">
+                  <div class="col-11 col-sm-11 col-md-6 col-lg-6 mb-2">
+                    <!-- Submit button for the form -->
+                    <button type="submit" [disabled]="!customerForm.valid" class="btn btn-outline-primary">Registrarme para concursar</button>
+                  </div>
+                  <div class="col-11 col-sm-11 col-md-6 col-lg-6 mb-2">
+                    <!-- Button to download Excel files -->
+                    <button type="button" class="btn btn-outline-secondary" (click)="downloadExcel()"> 
+                      Descargar archivos de Excel
+                    </button>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -122,7 +158,8 @@
         </div>
       </div>
     </div>
-    <div class="col-11 col-sm-11 col-md-6 col-lg-6 text-center mt-4">
+    <!-- Column for the winner component -->
+    <div class="col-11 col-sm-11 col-md-6 col-lg-6 mt-4">
       <app-winner></app-winner>
     </div>
   </div>
