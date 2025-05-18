@@ -1,23 +1,30 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col text-center">
-            @if (winnerName) {
-                <div class="card p-3">
-                    <h4>El ganador es {{ winnerName }} 🎉</h4>
-                </div>
-            }
-        </div>
+  <div class="row">
+    <div class="col text-center">
+      @if (winnerName) {
+      <div class="card p-3">
+        <h4>El ganador es {{ winnerName }} 🎉</h4>
+      </div>
+      }
     </div>
-    <div class="row">
-        <div class="col text-center">
-            <br>
-            <br>
-            <button type="button" class="btn btn-success" (click)="selectWinner()">
-                Clic aquí para participar del sorteo
-            </button>
-            <br>
-            <br>
-            <h6><span class="badge text-bg-dark">El sorteo se realizará al menos con 5 participantes</span></h6>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <br />
+      <br />
+      <button type="button" class="btn btn-primary" (click)="selectWinner()">
+        Clic aquí para participar del sorteo
+      </button>
+      <br />
+      <br />
+      <h6>
+        <span class="badge text-bg-dark">
+          El sorteo se realizará al menos con 5 participantes. @if
+          (customerTotal > 0) {
+          <br /><br />
+          Actualmente están registrados {{ customerTotal }} clientes. }
+        </span>
+      </h6>
     </div>
+  </div>
 </div>

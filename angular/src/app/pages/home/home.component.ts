@@ -15,10 +15,21 @@ import { Observable } from 'rxjs';
 import { notZeroValidator } from '../../utils/validators';
 import { CustomerModel } from '../../models/customer.model';
 import { WinnerComponent } from '../../shared/components/winner/winner.component';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { ToastService } from '../../services/toast/toast.service';
 
 @Component({
   selector: 'app-home',
-  imports: [ReactiveFormsModule, CommonModule, WinnerComponent],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    WinnerComponent,
+    NgbToastModule,
+    NgbTooltipModule,
+    ToastComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -66,7 +77,8 @@ export class HomeComponent {
   constructor(
     private customerService: CustomerService,
     private departmentService: DepartmentService,
-    private cityService: CityService
+    private cityService: CityService,
+    private toastService: ToastService
   ) {}
 
   /** Initializes the component by loading departments. */
@@ -140,6 +152,7 @@ export class HomeComponent {
       const customer = new CustomerModel(this.customerForm.getRawValue());
       this.customerService.createCustomer(customer).subscribe({
         next: () => {
+          this.showToast();
           console.log('Customer created successfully');
         },
         error: (error) => {
@@ -154,5 +167,9 @@ export class HomeComponent {
       this.customerForm.markAllAsTouched();
       console.error('Form is invalid');
     }
+  }
+
+  showToast(message: string = '¡Cliente creado con éxito!') {
+    this.toastService.show(message, 'bg-success text-light');
   }
 }

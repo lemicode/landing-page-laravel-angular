@@ -1,166 +1,254 @@
-<div id="background"></div>
+<!-- Background container for styling purposes -->
+<div id="background" class="background-container"></div>
+<div id="shadow"></div>
 <!-- Container for the entire registration form -->
 <div id="landing-page" class="container-fluid">
   <!-- Row for aligning the form and winner component -->
   <div class="row justify-content-around align-items-center">
     <!-- Column for the registration form -->
-    <div class="col-11 col-sm-11 col-md-6 col-lg-6">
+    <div class="col-11 col-sm-11 col-md-6 col-lg-4">
       <div class="card mt-4 mb-4">
         <!-- Header of the registration card -->
-        <div class="card-header text-center">
-          <h5>REGÍSTRATE PARA CONCURSAR POR UN AUTOMÓVIL</h5>
+        <div class="card-header text-center text-bg-secondary">
+          REGÍSTRATE PARA CONCURSAR POR UN AUTOMÓVIL
         </div>
         <div class="card-body">
           <!-- Registration form with Angular reactive forms -->
-          <form [formGroup]="customerForm" (ngSubmit)="handleSubmit()">  
+          <form [formGroup]="customerForm" (ngSubmit)="handleSubmit()">
             <div class="container-fluid">
-
               <!-- Row for the name input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <!-- Input for the user's first name -->
-                    <input type="text" formControlName="name" class="form-control form-control-sm" placeholder="Ingrese su nombre" required />
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control form-control-sm"
+                      placeholder="Ingrese su nombre"
+                      required
+                    />
                     <!-- Error message for invalid name input -->
-                    <small *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched" class="text-danger">
+                    <small
+                      *ngIf="
+                        customerForm.get('name')?.invalid &&
+                        customerForm.get('name')?.touched
+                      "
+                      class="text-danger"
+                    >
                       Nombre es requerido y debe contener solo letras.
                     </small>
                   </div>
                 </div>
               </div>
-
               <!-- Row for the last name input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Apellido</label>
                     <!-- Input for the user's last name -->
-                    <input type="text" formControlName="lastName" class="form-control form-control-sm" placeholder="Ingrese su apellido" required />
+                    <input
+                      type="text"
+                      formControlName="lastName"
+                      class="form-control form-control-sm"
+                      placeholder="Ingrese su apellido"
+                      required
+                    />
                     <!-- Error message for invalid last name input -->
-                    <small *ngIf="customerForm.get('lastName')?.invalid && customerForm.get('lastName')?.touched" class="text-danger">
+                    <small
+                      *ngIf="
+                        customerForm.get('lastName')?.invalid &&
+                        customerForm.get('lastName')?.touched
+                      "
+                      class="text-danger"
+                    >
                       Apellido es requerido y debe contener solo letras.
                     </small>
                   </div>
                 </div>
               </div>
-
               <!-- Row for the identity number input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Cédula</label>
                     <!-- Input for the user's identity number -->
-                    <input type="number" formControlName="identityNumber" class="form-control form-control-sm" placeholder="Ingrese su cédula" required />
+                    <input
+                      type="number"
+                      formControlName="identityNumber"
+                      class="form-control form-control-sm"
+                      placeholder="Ingrese su cédula"
+                      required
+                    />
                     <!-- Error message for invalid identity number input -->
-                    <small *ngIf="customerForm.get('identityNumber')?.invalid && customerForm.get('identityNumber')?.touched" class="text-danger">
+                    <small
+                      *ngIf="
+                        customerForm.get('identityNumber')?.invalid &&
+                        customerForm.get('identityNumber')?.touched
+                      "
+                      class="text-danger"
+                    >
                       Cédula es requerida y debe contener solo números.
                     </small>
                   </div>
                 </div>
               </div>
-
               <!-- Row for the department selection dropdown -->
               <div class="row">
                 <div class="col-12">
-                    <div class="mb-3">
-                      <label class="form-label">Departamento</label>
-                      <!-- Dropdown for selecting a department -->
-                      <select class="form-select form-select-sm" formControlName="departmentId" required (change)="getCities()">
-                        <option [value]="0" disabled>Seleccione una opción</option>
-                        @for (department of departments; track department.id) {
-                          <option [value]="department.id">{{ department.name }}</option>
-                        }
-                      </select>
-                    </div>
+                  <div class="mb-3">
+                    <label class="form-label">Departamento</label>
+                    <!-- Dropdown for selecting a department -->
+                    <select
+                      class="form-select form-select-sm"
+                      formControlName="departmentId"
+                      required
+                      (change)="getCities()"
+                    >
+                      <option [value]="0" disabled>
+                        Seleccione una opción
+                      </option>
+                      @for (department of departments; track department.id) {
+                      <option [value]="department.id">
+                        {{ department.name }}
+                      </option>
+                      }
+                    </select>
+                  </div>
                 </div>
               </div>
-
               <!-- Row for the city selection dropdown -->
               <div class="row">
                 <div class="col-12">
-                    <div class="mb-3">
-                      <label class="form-label">Ciudad</label>
-                      <!-- Dropdown for selecting a city -->
-                      <select class="form-select form-select-sm" formControlName="cityId" required>
-                        <option [value]="0" disabled>Seleccione una opción</option>
-                        @for (city of cities; track city.id) {
-                          <option [value]="city.id">{{ city.name }}</option>
-                        }
-                      </select>
-                    </div>
+                  <div class="mb-3">
+                    <label class="form-label">Ciudad</label>
+                    <!-- Dropdown for selecting a city -->
+                    <select
+                      class="form-select form-select-sm"
+                      formControlName="cityId"
+                      required
+                    >
+                      <option [value]="0" disabled>
+                        Seleccione una opción
+                      </option>
+                      @for (city of cities; track city.id) {
+                      <option [value]="city.id">{{ city.name }}</option>
+                      }
+                    </select>
+                  </div>
                 </div>
               </div>
-
               <!-- Row for the phone number input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Teléfono</label>
                     <!-- Input for the user's phone number -->
-                    <input type="phone" formControlName="phoneNumber" class="form-control form-control-sm" placeholder="Ingrese su teléfono" required />
+                    <input
+                      type="phone"
+                      formControlName="phoneNumber"
+                      class="form-control form-control-sm"
+                      placeholder="Ingrese su teléfono"
+                      required
+                    />
                     <!-- Error message for invalid phone number input -->
-                    <small *ngIf="customerForm.get('phoneNumber')?.invalid && customerForm.get('phoneNumber')?.touched" class="text-danger">
+                    <small
+                      *ngIf="
+                        customerForm.get('phoneNumber')?.invalid &&
+                        customerForm.get('phoneNumber')?.touched
+                      "
+                      class="text-danger"
+                    >
                       Teléfono es requerido y debe contener solo números.
                     </small>
                   </div>
                 </div>
               </div>
-
               <!-- Row for the email input field -->
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
                     <label class="form-label">Correo</label>
                     <!-- Input for the user's email address -->
-                    <input type="email" formControlName="email" class="form-control form-control-sm" placeholder="Ingrese su correo" required />
+                    <input
+                      type="email"
+                      formControlName="email"
+                      class="form-control form-control-sm"
+                      placeholder="Ingrese su correo"
+                      required
+                    />
                     <!-- Error message for invalid email input -->
-                    <small *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched" class="text-danger">
+                    <small
+                      *ngIf="
+                        customerForm.get('email')?.invalid &&
+                        customerForm.get('email')?.touched
+                      "
+                      class="text-danger"
+                    >
                       Correo es requerido y debe tener un formato válido.
                     </small>
                   </div>
                 </div>
               </div>
-
               <!-- Row for the habeas data consent checkbox -->
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-check">
                     <!-- Checkbox for user consent -->
-                    <input class="form-check-input" type="checkbox" formControlName="habeasDataConsent" required />
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      formControlName="habeasDataConsent"
+                      required
+                    />
                     <label class="form-check-label">
-                      <p style="text-align: justify;">
-                        Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la política de protección de datos personales.
-                      </p>
+                      <small style="text-align: justify">
+                        Autorizo el tratamiento de mis datos de acuerdo con la
+                        finalidad establecida en la política de protección de
+                        datos personales.
+                      </small>
                     </label>
                   </div>
                 </div>
               </div>
-
               <!-- Row for the form action buttons -->
               <div class="col-12">
                 <div class="row justify-content-center text-center">
                   <div class="col-11 col-sm-11 col-md-6 col-lg-6 mb-2">
                     <!-- Submit button for the form -->
-                    <button type="submit" [disabled]="!customerForm.valid" class="btn btn-outline-primary">Registrarme para concursar</button>
+                    <button
+                      type="submit"
+                      id="btn-reg"
+                      [disabled]="!customerForm.valid"
+                      class="btn btn-outline-primary btn-sm"
+                    >
+                      Registrarme para concursar
+                    </button>
                   </div>
                   <div class="col-11 col-sm-11 col-md-6 col-lg-6 mb-2">
                     <!-- Button to download Excel files -->
-                    <button type="button" class="btn btn-outline-secondary" (click)="downloadExcel()"> 
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary btn-sm"
+                      (click)="downloadExcel()"
+                      ngbTooltip="Se descargan 3 archivos"
+                    >
                       Descargar archivos de Excel
                     </button>
                   </div>
                 </div>
               </div>
-
             </div>
           </form>
         </div>
       </div>
     </div>
     <!-- Column for the winner component -->
-    <div class="col-11 col-sm-11 col-md-6 col-lg-6 mt-4">
+    <div class="col-11 col-sm-11 col-md-6 col-lg-5 mt-4">
       <app-winner></app-winner>
     </div>
   </div>
 </div>
+<!-- Toast component for displaying notifications -->
+<app-toast aria-live="polite" aria-atomic="true"></app-toast>

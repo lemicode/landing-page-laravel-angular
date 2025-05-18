@@ -47,13 +47,15 @@ class CustomerController extends Controller
     public function selectWinner()
     {
         $winner = false;
+        $customerTotal = Customer::count();
 
-        if (Customer::count() >= 5) {
+        if ($customerTotal >= 5) {
             $winner = Customer::inRandomOrder()->first();
         }
 
         return response()->json([
-            'winner' => $winner
+            'winner' => $winner,
+            'customerTotal' => $customerTotal
         ]);
     }
 }

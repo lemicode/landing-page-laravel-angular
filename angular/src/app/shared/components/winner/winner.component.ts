@@ -10,12 +10,14 @@ import confetti from 'canvas-confetti';
 })
 export class WinnerComponent {
   winnerName: string | null = null;
+  _customerTotal: number = 0;
 
   constructor(private winnerService: WinnerService) {}
 
   selectWinner() {
     this.winnerService.selectWinner().subscribe({
       next: (data) => {
+        this._customerTotal = data.customerTotal;
         if (data.winner) {
           this.winnerName = `${data.winner.name} ${data.winner.last_name}`;
           this.celebrate();
@@ -26,6 +28,10 @@ export class WinnerComponent {
         console.error('Error selecting winner:', error);
       },
     });
+  }
+
+  get customerTotal() {
+    return this._customerTotal;
   }
 
   celebrate() {
