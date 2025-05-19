@@ -27,6 +27,7 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 ## Contenido del Proyecto
 
 ### Frontend (Angular)
+
 - **Framework**: Angular 19+
 - **Estructura**:
   - `src/app/models/`: Modelos de datos utilizados en la aplicación.
@@ -37,6 +38,7 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
   - `src/environments/`: Configuración de entornos (desarrollo y producción).
 
 ### Backend (Laravel)
+
 - **Framework**: Laravel 12+
 - **Estructura**:
   - `app/Exports/`: Clases para exportar datos en formatos como Excel.
@@ -48,11 +50,12 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 ## Cómo replicar el proyecto en un ambiente local
 
 ### Requisitos previos
-- Docker
+
+- Tener instalado Docker
 
 ### Pasos
 
-1. ** Abrir docker y dejarlo correr si se quiere en segundo plano **
+1. **Abrir docker y dejarlo correr si se quiere en segundo plano**
 
 2. **Clonar el repositorio o descargar de él, únicamente el archivo /docker-compose-laravel-angular/docker-compose.yaml**:
 
@@ -69,13 +72,15 @@ docker compose up -d
 ```bash
 docker compose -f /docker-compose-laravel-angular/docker-compose.yaml up -d
 ```
+
 **Nota:** La ruta tendrá que cambiarse según la ubicación del archivo `docker-compose.yaml` en su máquina.
 
-4. Eso es todo, ahora mediante un navegador ingrese al frontend mediante la URL localhost:4200, o al backend mediante la URL localhost:8000 para hacer validaciones directas a la API.
+4. Eso es todo, ahora mediante un navegador ingrese a la URL localhost:4200 (frontend), o al backend con la URL localhost:8000 para validar directamente la API, pero también puede usar Postman o cualquier otro cliente HTTP que sería lo más recomendable.
 
 ## Buenas prácticas implementadas
 
 ### Backend (Laravel)
+
 - **Estructura modular**: Uso de controladores, modelos y servicios para separar responsabilidades.
 - **Exportación de datos**: Clases en `app/Exports/` para exportar datos en Excel.
 - **Migraciones y seeders**: Migraciones para la estructura de la base de datos y seeders para datos iniciales.
@@ -84,6 +89,7 @@ docker compose -f /docker-compose-laravel-angular/docker-compose.yaml up -d
 - **Middleware personalizado**: Uso de middleware como `ForceJsonResponse` para estandarizar las respuestas de la API.
 
 ### Frontend (Angular)
+
 - **Componentes standalone**: Uso de componentes independientes para modularidad.
 - **Servicios centralizados**: Servicios en `src/app/services/` para manejar la lógica de negocio y las llamadas HTTP.
 - **Modelos e interfaces**: Uso de `src/app/models/` y `src/app/interfaces/` para tipado fuerte y consistencia.
