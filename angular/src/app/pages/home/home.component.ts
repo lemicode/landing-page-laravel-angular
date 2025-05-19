@@ -120,30 +120,31 @@ export class HomeComponent {
 
   /** Downloads Excel files for customers, departments, and cities. */
   downloadExcel() {
-    const fileNames = ['customers.xlsx', 'departments.xlsx', 'cities.xlsx'];
-    const serviceNames = [
-      'customerService',
-      'departmentService',
-      'cityService',
-    ];
+    const services = {
+      customers: this.customerService,
+      departments: this.departmentService,
+      cities: this.cityService,
+    };
+    Object.entries(services).forEach(([key, service]) => {
+      service.downloadExcel().subscribe({
+        next: (blob: Blob) => {
+          this.restoreFile(blob, `${key}.xlsx`);
+        },
+        error: (err: any) => {
+          console.error(`Error al descargar el archivo ${key}.xlsx:`, err);
+        },
+      });
+    });
+  }
 
-    for (let serviceName of serviceNames) {
-      (this[serviceName] as { downloadExcel: () => Observable<Blob> })
-        .downloadExcel()
-        .subscribe({
-          next: (blob: Blob) => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileNames[serviceNames.indexOf(serviceName)];
-            a.click();
-            window.URL.revokeObjectURL(url);
-          },
-          error: (err: any) => {
-            console.error('Error al descargar el archivo Excel:', err);
-          },
-        });
-    }
+  /** Restores a file from a Blob object. */
+  restoreFile(blob: Blob, fileName: string) {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
 
   /** Handles form submission to create a new customer. */

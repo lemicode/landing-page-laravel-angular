@@ -25,7 +25,7 @@ export class CustomerService {
   }
 
   downloadExcel(): Observable<Blob> {
-    return this.http.get(`${environment.apiUrl}/departments/excel`, {
+    return this.http.get(`${environment.apiUrl}/customers/excel`, {
       responseType: 'blob',
     });
   }
