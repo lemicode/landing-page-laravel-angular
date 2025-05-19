@@ -48,47 +48,30 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 ## Cómo replicar el proyecto en un ambiente local
 
 ### Requisitos previos
-- Node.js (v16 o superior)
-- Composer
-- PHP (v8.1 o superior)
-- MySQL o SQLite
-- Docker (Opcional, es para crear los contenedores de MariaDB y PhpMyAdmin, como más adelante se relaciona.)
+- Docker
 
 ### Pasos
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd project
-   ```
+1. ** Abrir docker y dejarlo correr si se quiere en segundo plano **
 
-2. **Ejecutar Docker**:
+2. **Clonar el repositorio o descargar de él, únicamente el archivo /docker-compose-laravel-angular/docker-compose.yaml**:
 
-   El archivo `docker-compose.yaml` se encuentra en la carpeta `/docker-rdbms`. Una vez ejecutado ya se contaría con **MariaDB** y **PhpMyAdmin** al cual se podría acceder desde el navegador mediante la dirección `http://localhost:8080` *(Usuario: root, Password: notSecureChangeMe)*.
+3. **Ejecutar uno de los siguientes comandos de docker-compose según el escenario**
 
-   ```bash
-   docker-compose up -d
-   ```
+- Si en la terminal, el prompt se encuentra en la carpeta que contiene el archivo docker-compose.yaml:
 
-3. **Configurar el backend (Laravel)**:
+```bash
+docker compose up -d
+```
 
-   ```bash
-   cd laravel
-   composer install
-   php artisan key:generate
-   php artisan migrate --seed --force
-   php artisan serve
-   ```
-   Esto iniciará el servidor en `http://localhost:8000`
+- Si en la terminal, el prompt se encuentra fuera de la carpeta que contiene el archivo docker-compose.yaml:
 
-4. **Configurar el frontend (Angular)**:
+```bash
+docker compose -f /docker-compose-laravel-angular/docker-compose.yaml up -d
+```
+**Nota:** La ruta tendrá que cambiarse según la ubicación del archivo `docker-compose.yaml` en su máquina.
 
-   ```bash
-   cd ../angular
-   npm install
-   ng serve
-   ```
-   Esto iniciará el servidor en `http://localhost:4200`
+4. Eso es todo, ahora mediante un navegador ingrese al frontend mediante la URL localhost:4200, o al backend mediante la URL localhost:8000 para hacer validaciones directas a la API.
 
 ## Buenas prácticas implementadas
 
@@ -97,9 +80,13 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 - **Exportación de datos**: Clases en `app/Exports/` para exportar datos en Excel.
 - **Migraciones y seeders**: Migraciones para la estructura de la base de datos y seeders para datos iniciales.
 - **Validación de datos**: Uso de `FormRequest` para validar las solicitudes.
+- **Pruebas unitarias**: Implementación de pruebas unitarias para garantizar la calidad del código.
+- **Middleware personalizado**: Uso de middleware como `ForceJsonResponse` para estandarizar las respuestas de la API.
 
 ### Frontend (Angular)
 - **Componentes standalone**: Uso de componentes independientes para modularidad.
 - **Servicios centralizados**: Servicios en `src/app/services/` para manejar la lógica de negocio y las llamadas HTTP.
 - **Modelos e interfaces**: Uso de `src/app/models/` y `src/app/interfaces/` para tipado fuerte y consistencia.
 - **Environments**: Configuración separada para desarrollo y producción en `src/environments/`.
+- **Validación reactiva**: Uso de formularios reactivos con validaciones personalizadas.
+- **Descarga de archivos**: Implementación de lógica para la descarga de archivos Excel desde el backend.
