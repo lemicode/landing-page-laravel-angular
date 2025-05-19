@@ -11,7 +11,6 @@ import { DepartmentService } from '../../services/department/department.service'
 import { CityService } from '../../services/city/city.service';
 import { Department } from '../../interfaces/department.interface';
 import { City } from '../../interfaces/city.interface';
-import { Observable } from 'rxjs';
 import { notZeroValidator } from '../../utils/validators';
 import { CustomerModel } from '../../models/customer.model';
 import { WinnerComponent } from '../../shared/components/winner/winner.component';
@@ -34,8 +33,6 @@ import { ToastService } from '../../services/toast/toast.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  [key: string]: any;
-
   /** List of departments loaded from the backend. */
   departments: Department[] = [];
 

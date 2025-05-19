@@ -51,7 +51,7 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 
 ### Requisitos previos
 
-- Tener instalado Docker
+- Tener instalado Docker.
 
 ### Pasos
 
