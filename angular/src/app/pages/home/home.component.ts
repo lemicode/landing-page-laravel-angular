@@ -46,11 +46,11 @@ export class HomeComponent {
   customerForm = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
-      Validators.pattern(/^[a-zA-Z\s]+$/),
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/),
     ]),
     lastName: new FormControl(null, [
       Validators.required,
-      Validators.pattern(/^[a-zA-Z\s]+$/),
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/),
     ]),
     identityNumber: new FormControl(null, [
       Validators.required,
