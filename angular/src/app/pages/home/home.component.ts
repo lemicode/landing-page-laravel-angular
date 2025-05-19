@@ -169,7 +169,7 @@ export class HomeComponent {
     }
   }
 
-  showToast(message: string = '¡Cliente creado con éxito!') {
+  showToast(message: string = '¡Concursante registrado con éxito!') {
     this.toastService.show(message, 'bg-success text-light');
   }
 }
