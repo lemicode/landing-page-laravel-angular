@@ -12,7 +12,7 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 
 ## Ejecución de las migraciones y seeders
 
-![img3](migrations.png)
+![img3](/images/migrations.png)
 
 ## Vista y funcionamiento de la aplicación
 
