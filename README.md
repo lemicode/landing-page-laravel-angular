@@ -4,25 +4,25 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 
 ## Diagrama de la base de datos (se exclueron del gráfico las tablas que se instalan por defecto)
 
-![img1](/images/mer.png)
+![img1](./images/mer.png)
 
 ## Pruebas unitarias realizadas al backend
 
-![img2](/images/test-backend.png)
+![img2](./images/test-backend.png)
 
 ## Ejecución de las migraciones y seeders
 
-![img3](/images/migrations.png)
+![img3](./images/migrations.png)
 
 ## Vista y funcionamiento de la aplicación
 
-![screen1](/images/screen1.png)
-![screen2](/images/screen2.png)
-![screen3](/images/screen3.png)
-![screen4](/images/screen4.png)
-![screen5](/images/screen5.png)
-![screen6](/images/screen6.png)
-![screen7](/images/screen7.png)
+![screen1](./images/screen1.png)
+![screen2](./images/screen2.png)
+![screen3](./images/screen3.png)
+![screen4](./images/screen4.png)
+![screen5](./images/screen5.png)
+![screen6](./images/screen6.png)
+![screen7](./images/screen7.png)
 
 ## Contenido del Proyecto
 
