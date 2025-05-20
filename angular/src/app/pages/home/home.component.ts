@@ -18,6 +18,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { ToastService } from '../../services/toast/toast.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -84,7 +85,7 @@ export class HomeComponent {
   }
 
   /** Fetches the list of departments from the backend. */
-  getDepartments() {
+  getDepartments(): void {
     this.departmentService.getDepartments().subscribe({
       next: (data) => {
         this.departments = data.departments ?? [];
@@ -98,7 +99,7 @@ export class HomeComponent {
   }
 
   /** Fetches the list of cities based on the selected department. */
-  getCities() {
+  getCities(): void {
     if (!this.customerForm.value.departmentId) {
       return;
     }
@@ -116,7 +117,7 @@ export class HomeComponent {
   }
 
   /** Downloads Excel files for customers, departments, and cities. */
-  downloadExcel() {
+  downloadExcel(): void {
     const services = {
       customers: this.customerService,
       departments: this.departmentService,
@@ -135,7 +136,7 @@ export class HomeComponent {
   }
 
   /** Restores a file from a Blob object. */
-  restoreFile(blob: Blob, fileName: string) {
+  restoreFile(blob: Blob, fileName: string): void {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -145,16 +146,17 @@ export class HomeComponent {
   }
 
   /** Handles form submission to create a new customer. */
-  handleSubmit() {
+  handleSubmit(): void {
     if (this.customerForm.valid) {
       const customer = new CustomerModel(this.customerForm.getRawValue());
       this.customerService.createCustomer(customer).subscribe({
         next: () => {
-          this.showToast();
+          this.showToast('¡Concursante registrado con éxito!', 'success');
           console.log('Customer created successfully');
         },
         error: (error) => {
           console.error('Error creating customer:', error);
+          this.showToast(error.error.message, 'error');
         },
       });
       this.customerForm.reset();
@@ -167,7 +169,11 @@ export class HomeComponent {
     }
   }
 
-  showToast(message: string = '¡Concursante registrado con éxito!') {
-    this.toastService.show(message, 'bg-success text-light');
+  showToast(message: string, messageType: string): void {
+    if (messageType === 'error') {
+      this.toastService.show(message, 'bg-danger text-light', 3000);
+    } else {
+      this.toastService.show(message, 'bg-success text-light', 5000);
+    }
   }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -26,6 +27,12 @@ return new class extends Migration
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
+
+        /** 
+         * Uncomment the following line to add a check constraint for habeas_data_consent.
+         * This constraint ensures that the habeas_data_consent field is set to 1 (true) when a new customer is created.
+         */
+        // DB::statement('ALTER TABLE customers ADD CONSTRAINT chk_habeas_data_consent CHECK (habeas_data_consent = 1)');
     }
 
     /**
@@ -33,6 +40,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        /** Drop the check constraint if it exists */
+        // DB::statement('ALTER TABLE clientes DROP CONSTRAINT chk_activo');
         Schema::dropIfExists('customers');
     }
 };

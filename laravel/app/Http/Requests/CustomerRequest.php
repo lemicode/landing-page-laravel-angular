@@ -41,21 +41,21 @@ class CustomerRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name field is required.',
-            'last_name.required' => 'The last name field is required.',
-            'identity_number.required' => 'The identity number is required.',
-            'identity_number.integer' => 'The identity number must be an integer.',
-            'department_id.required' => 'The department is required.',
-            'department_id.exists' => 'The selected department does not exist.',
-            'city_id.required' => 'The city is required.',
-            'city_id.exists' => 'The selected city does not exist.',
-            'phone_number.required' => 'The phone number is required.',
-            'phone_number.integer' => 'The phone number must be an integer.',
-            'email.required' => 'The email is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'This email is already registered.',
-            'habeas_data_consent.required' => 'You must provide consent for data processing.',
-            'habeas_data_consent.boolean' => 'The consent field must be true or false.',
+            'name.required' => 'El campo nombre es obligatorio.',
+            'last_name.required' => 'El campo apellido es obligatorio.',
+            'identity_number.required' => 'El número de identificación es obligatorio.',
+            'identity_number.integer' => 'El número de identificación debe ser un número entero.',
+            'department_id.required' => 'El departamento es obligatorio.',
+            'department_id.exists' => 'El departamento seleccionado no existe.',
+            'city_id.required' => 'La ciudad es obligatoria.',
+            'city_id.exists' => 'La ciudad seleccionada no existe.',
+            'phone_number.required' => 'El número de teléfono es obligatorio.',
+            'phone_number.integer' => 'El número de teléfono debe ser un número entero.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            'habeas_data_consent.required' => 'Debe proporcionar su consentimiento para el tratamiento de datos.',
+            'habeas_data_consent.boolean' => 'El campo de consentimiento debe ser verdadero o falso.',
         ];
     }
 }
