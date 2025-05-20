@@ -155,8 +155,12 @@ export class HomeComponent {
           console.log('Customer created successfully');
         },
         error: (error) => {
+          Object.entries(error.error.errors).forEach(([property, messages]) => {
+            (messages as string[]).forEach((message: string) => {
+              this.showToast(message, 'error');
+            });
+          });
           console.error('Error creating customer:', error);
-          this.showToast(error.error.message, 'error');
         },
       });
       this.customerForm.reset();
@@ -171,9 +175,9 @@ export class HomeComponent {
 
   showToast(message: string, messageType: string): void {
     if (messageType === 'error') {
-      this.toastService.show(message, 'bg-danger text-light', 3000);
+      this.toastService.show(message, 'bg-danger text-light', 6000);
     } else {
-      this.toastService.show(message, 'bg-success text-light', 5000);
+      this.toastService.show(message, 'bg-success text-light', 3000);
     }
   }
 }

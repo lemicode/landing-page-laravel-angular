@@ -20,5 +20,7 @@ services:
       context: ./angular
       dockerfile: Dockerfile
     restart: always
+    # volumes:
+    #   - ./angular:/usr/src/app
     ports:
       - "4200:4200"
