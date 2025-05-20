@@ -5,6 +5,8 @@ services:
       context: ./laravel
       dockerfile: Dockerfile
     restart: always
+    volumes:
+      - ./laravel:/app
     ports:
       - "8000:8000"
     environment:
@@ -13,6 +15,7 @@ services:
       DB_DATABASE: /app/database/database.sqlite
 
   angular:
+    platform: linux/amd64
     build:
       context: ./angular
       dockerfile: Dockerfile
