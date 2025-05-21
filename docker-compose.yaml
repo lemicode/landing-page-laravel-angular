@@ -15,12 +15,12 @@ services:
       DB_DATABASE: /app/database/database.sqlite
 
   angular:
-    platform: linux/amd64
+    # platform: linux/amd64
     build:
       context: ./angular
       dockerfile: Dockerfile
     restart: always
-    # volumes:
-    #   - ./angular:/usr/src/app
+    volumes:
+      - ./angular:/usr/src/app
     ports:
       - "4200:4200"
