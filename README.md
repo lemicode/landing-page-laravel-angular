@@ -16,12 +16,20 @@ Este proyecto es una aplicación fullstack que combina un frontend desarrollado 
 
 ## Vista y funcionamiento de la aplicación
 
+### Vista general
 ![screen1](images/screen1.png)
+### Validaciones del formulario
 ![screen2](images/screen2.png)
+### Diligenciamientos del formulario
 ![screen3](images/screen3.png)
+### Mensaje de confirmación de registro
 ![screen4](images/screen4.png)
+### Mensaje de error al registrar
+![screen4a](images/screen4a.png)
+### Eventos ocurridos al presionar el botón *Clic aquí para participar del sorteo*
 ![screen5](images/screen5.png)
 ![screen6](images/screen6.png)
+### Exportación de datos a Excel
 ![screen7](images/screen7.png)
 
 ## Contenido del Proyecto
