@@ -1,6 +1,6 @@
 FROM bitnami/node
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY . .
 
